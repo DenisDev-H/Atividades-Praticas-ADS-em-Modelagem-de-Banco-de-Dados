@@ -1,28 +1,27 @@
-# 🏥 Sistema de Gestão de Farmácia e Dispensação Hospitalar
+# Sistema de Gestão de Farmácia e Dispensação Hospitalar
 
-Projeto desenvolvido no âmbito da formação em **Análise e Desenvolvimento de Sistemas (ADS)**, com foco na transição de carreira para a área de **Tecnologia em Saúde e Sistemas Hospitalares**. O objetivo é modelar, estruturar e consultar um banco de dados relacional robusto voltado para o controle de estoque, prescrições e rastreabilidade de medicamentos em ambiente hospitalar.
+## 📋 Descrição do Minimundo
+Projeto de modelagem e implementação de banco de dados relacional para controle de farmácia hospitalar, abrangendo cadastro de pacientes internados, controle de estoque e validade de medicamentos, registro de prescrições médicas e auditoria de dispensações.
 
----
+## 🗄️ Estrutura do Modelo Lógico (3FN)
+* **Paciente:** `id_paciente` (PK), `cpf` (UNIQUE), `nome_completo`, `numero_leito`, `data_internacao`.
+* **Medicamento:** `id_medicamento` (PK), `nome_comercial`, `principio_ativo`, `dosagem`, `quantidade_estoque`, `data_validade`.
+* **Prescricao:** `id_prescricao` (PK), `id_paciente` (FK), `data_prescricao`, `observacoes`.
+* **Dispensacao:** `id_dispensacao` (PK), `id_prescricao` (FK), `id_medicamento` (FK), `quantidade_dispensada`, `data_hora_dispensacao`.
 
-## 🎯 Sobre o Projeto (Elevator Pitch)
-Este sistema relacional foi desenhado para gerenciar o controle de estoque, a validade de insumos e a dispensação de medicamentos para os leitos de uma farmácia hospitalar. O principal propósito é automatizar a rastreabilidade dos medicamentos, garantindo segurança na administração aos pacientes e eficiência operacional para farmacêuticos, enfermeiros e gestores.
+## ⚙️ Configuração do Ambiente
+* **SGBD:** MySQL 8.0+
+* **Ferramenta:** MySQL Workbench
+* **Conexão:** Servidor local na porta `3306` com o banco `db_farmacia_hospitalar`.
 
----
+## 🚀 Ordem sugerida
+Para garantir a integridade referencial e evitar erros de dependência de chaves estrangeiras (FK), execute os scripts na seguinte sequência:
 
-## 🏗️ Modelagem de Dados e Arquitetura (DDL)
-O banco de dados foi construído utilizando **Microsoft SQL Server**, aplicando os princípios fundamentais de normalização, integridade referencial e chaves estrangeiras (`FK`).
+1. **Criação do schema e tabelas (DDL):** Criação do banco `db_farmacia_hospitalar` e das tabelas independentes (`Paciente`, `Medicamento`) seguidas pelas dependentes (`Prescricao`, `Dispensacao`).
+2. **Inserts (Povoamento):** Execução dos comandos `INSERT` respeitando a hierarquia (tabelas-mãe antes das tabelas-filhas).
+3. **Selects (Consultas):** Execução das consultas analíticas combinando `JOIN`, `WHERE`, `ORDER BY` e `LIMIT`.
+4. **Updates (Atualizações):** Execução das alterações controladas com cláusula `WHERE`.
+5. **Deletes (Exclusões):** Execução das remoções seguras de registros dependentes antes dos registros-mãe, sempre condicionadas por `WHERE`.
 
-### Estruturas das Tabelas:
-1. **`Paciente`**: Armazena a identificação e os dados de internação dos pacientes.
-2. **`Medicamento`**: Controla o catálogo de insumos, princípios ativos, dosagens, quantidades em estoque e datas de validade.
-3. **`Prescricao`**: Regista as orientações médicas associadas a cada paciente (Relacionamento 1 para N).
-4. **`Dispensacao`**: Tabela transacional que une prescrições e medicamentos, registrando a saída física dos itens com data, hora e quantidade exata.
-
----
-
-## 🚀 Como Executar o Projeto
-
-1. Certifique-se de ter o **Microsoft SQL Server** e o **SQL Server Management Studio (SSMS)** instalados.
-2. Crie uma nova base de dados com o nome desejado:
-   ```sql
-   CREATE DATABASE SistemaGestaoFarmaciaHospitalar;
+## 👨‍💻 Autor
+Denis Araujo — Estudante de Análise e Desenvolvimento de Sistemas (ADS).
