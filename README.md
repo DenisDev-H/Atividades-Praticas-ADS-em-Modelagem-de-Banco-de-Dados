@@ -22,6 +22,7 @@ Para garantir a integridade referencial e evitar erros de dependência de chaves
 3. **Selects (Consultas):** Execução das consultas analíticas combinando `JOIN`, `WHERE`, `ORDER BY` e `LIMIT`.
 4. **Updates (Atualizações):** Execução das alterações controladas com cláusula `WHERE`.
 5. **Deletes (Exclusões):** Execução das remoções seguras de registros dependentes antes dos registros-mãe, sempre condicionadas por `WHERE`.
+6. **Transações (Controle de Concorrência):** Execução do script `04_transacoes_seguranca.sql` demonstrando operações atômicas (`START TRANSACTION`, `COMMIT` e `ROLLBACK`) entre o registro de dispensação e a baixa controlada de estoque.
 
 ## 👨‍💻 Autor
 Denis Araujo — Estudante de Análise e Desenvolvimento de Sistemas (ADS).
